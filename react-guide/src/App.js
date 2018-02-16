@@ -8,7 +8,8 @@ class App extends Component {
         { name: "Erick", game: "Bayonetta" },
         { name: "Ricardo", game: "GTA V" },
         { name: "Gus", game: "Rust" }
-      ]
+      ],
+      show: true
     }
 
     switchNameHandler = (newName) => {
@@ -31,6 +32,11 @@ class App extends Component {
       })
     }
 
+    togglePersonHandler = () => {
+      const doesShow = this.state.show;
+      this.setState({show: !doesShow});
+    }
+
   render() {
     const style = {
       backgroundColor: 'steelblue',
@@ -44,9 +50,14 @@ class App extends Component {
     return (
       <div className="App">
         <h1>HOI!!</h1>
-        <Person change={this.changedHandler} name = {this.state.persons[0].name} game = {this.state.persons[0].game}></Person>
-        <Person clic={() => this.switchNameHandler('Richi')} name = {this.state.persons[1].name} game = {this.state.persons[1].game}></Person>
-        <button onClick = {this.switchNameHandler.bind(this, 'Richard')} style={style}>Change name</button>
+        { 
+          this.state.show && 
+          <div >
+            <Person change={this.changedHandler} name = {this.state.persons[0].name} game = {this.state.persons[0].game}></Person>
+            <Person clic={() => this.switchNameHandler('Richi')} name = {this.state.persons[1].name} game = {this.state.persons[1].game}></Person>
+          </div>
+        }
+        <button onClick = {this.togglePersonHandler} style={style}>Toggle Persons</button>
       </div>
     )
   }
