@@ -5,36 +5,36 @@ import Person from './Components/Person/Person'
 class App extends Component {
     state = {
       persons: [
-        { name: "Erick", game: "Bayonetta" },
-        { name: "Ricardo", game: "GTA V" },
-        { name: "Gus", game: "Rust" }
+        { id: '123', name: "Erick", game: "Bayonetta" },
+        { id: '423ds', name: "Ricardo", game: "GTA V" },
+        { id: 'sdfv', name: "Gus", game: "Rust" }
       ],
       show: true
     }
 
-    switchNameHandler = (newName) => {
-      this.setState({
-        persons: [
-          { name: "Erick", game: "Bayonetta" },
-          { name: newName, game: "GTA V" },
-          { name: "Gus", game: "Rust" }
-        ]
+    changedHandler = (event, id) => {
+      const personIndex = this.state.persons.findIndex((p) => {
+        return p.id === id;
       })
-    }
+      const person = {...this.state.persons[personIndex]};
+      person.name = event.target.value;
+      const persons = [...this.state.persons];
+      persons[personIndex] = person;
 
-    changedHandler = (event) => {
       this.setState({
-        persons: [
-          { name: event.target.value, game: "Bayonetta" },
-          { name: 'Ricardo', game: "GTA V" },
-          { name: "Gus", game: "Rust" }
-        ]
+        persons: persons
       })
     }
 
     togglePersonHandler = () => {
       const doesShow = this.state.show;
       this.setState({show: !doesShow});
+    }
+
+    deletePerson = (index) => {
+      const persons = [...this.state.persons];
+      persons.splice(index, 1);
+      this.setState({persons: persons});
     }
 
   render() {
@@ -53,8 +53,11 @@ class App extends Component {
         { 
           this.state.show && 
           <div >
-            <Person change={this.changedHandler} name = {this.state.persons[0].name} game = {this.state.persons[0].game}></Person>
-            <Person clic={() => this.switchNameHandler('Richi')} name = {this.state.persons[1].name} game = {this.state.persons[1].game}></Person>
+            {
+              this.state.persons.map((p, index) => {
+                return <Person name={p.name} game={p.game} key={p.id} change={(event) => this.changedHandler(event, p.id)} click={() => this.deletePerson(index)}/>
+              })
+            }
           </div>
         }
         <button onClick = {this.togglePersonHandler} style={style}>Toggle Persons</button>
