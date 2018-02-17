@@ -1,6 +1,7 @@
 import React, { Component, createElement } from 'react';
 import './App.css';
-import Person from './Components/Person/Person'
+import Person from './Components/Person/Person';
+import Radium from 'radium';
 
 class App extends Component {
     state = {
@@ -39,17 +40,25 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: 'steelblue',
+      backgroundColor: 'limegreen',
       font: 'inherit',
       border: '1px solid black',
       padding: '8px',
       color: 'white',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'steelblue'
+      }
     }
 
+    style.backgroundColor = this.state.show ? 'darkred' : 'limegreen';
+    style[':hover'] = this.state.show ? { backgroundColor: 'limegreen'} : { backgroundColor: 'darkred'};
+    let classes = [];
+    this.state.persons.length <= 2 ? classes.push('Red') : null;
+    this.state.persons.length <= 1 ? classes.push('Bold') : null;
     return (
       <div className="App">
-        <h1>HOI!!</h1>
+        <h1 className={classes.join(' ')}>HOI!!</h1>
         { 
           this.state.show && 
           <div >
@@ -66,4 +75,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);
