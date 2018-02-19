@@ -10,3 +10,32 @@
   font-weight: bold;
   text-decoration-line: underline;
 }
+
+.App button{
+  border: 1px solid steelblue;
+  padding: 16px;
+  background-color: green;
+  font: inherit;
+  cursor: pointer;
+  color: white;
+}
+
+.App button:hover{
+  background-color: limegreen;
+  color: black;
+}
+
+.App button.Red{
+  border: 1px solid steelblue;
+  padding: 16px;
+  background-color: darkred;
+  font: inherit;
+  cursor: pointer;
+  color: white;
+}
+
+.App button.Red:hover{
+  background-color: rgb(219, 82, 82);
+  color: black;
+}
+

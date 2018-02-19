@@ -38,23 +38,11 @@ class App extends Component {
     }
 
   render() {
-    const styled = {
-      backgroundColor: 'limegreen',
-      font: 'inherit',
-      border: '1px solid black',
-      padding: '8px',
-      color: 'white',
-      cursor: 'pointer',
-      marginTop: '20px'
-    }
-
-    styled.backgroundColor = this.state.show ? 'darkred' : 'limegreen';
-    let classes = [];
-    this.state.persons.length <= 2 ? classes.push(styles.Red) : null;
-    this.state.persons.length <= 1 ? classes.push(styles.Bold) : null;
+    let buttonClass = '';
+    buttonClass = this.state.show ? '' : styles.Red;
     return (
       <div className={styles.App}>
-        <h1 className={classes.join(' ')}>HOI!!</h1>
+        <h1 className={'ko'}>HOI!!</h1>
         { 
           this.state.show && 
           <div >
@@ -65,7 +53,7 @@ class App extends Component {
             }
           </div>
         }
-        <button onClick = {this.togglePersonHandler} style={styled}>Toggle Persons</button>
+        <button onClick = {this.togglePersonHandler} className={buttonClass}>Toggle Persons</button>
       </div>
     )
   }
