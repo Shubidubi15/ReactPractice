@@ -1,5 +1,5 @@
 import React, { Component, createElement } from 'react';
-import './App.css';
+import styles from './App.css';
 import Person from './Components/Person/Person';
 
 class App extends Component {
@@ -38,21 +38,22 @@ class App extends Component {
     }
 
   render() {
-    const style = {
+    const styled = {
       backgroundColor: 'limegreen',
       font: 'inherit',
       border: '1px solid black',
       padding: '8px',
       color: 'white',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      marginTop: '20px'
     }
 
-    style.backgroundColor = this.state.show ? 'darkred' : 'limegreen';
+    styled.backgroundColor = this.state.show ? 'darkred' : 'limegreen';
     let classes = [];
-    this.state.persons.length <= 2 ? classes.push('Red') : null;
-    this.state.persons.length <= 1 ? classes.push('Bold') : null;
+    this.state.persons.length <= 2 ? classes.push(styles.Red) : null;
+    this.state.persons.length <= 1 ? classes.push(styles.Bold) : null;
     return (
-      <div className="App">
+      <div className={styles.App}>
         <h1 className={classes.join(' ')}>HOI!!</h1>
         { 
           this.state.show && 
@@ -64,7 +65,7 @@ class App extends Component {
             }
           </div>
         }
-        <button onClick = {this.togglePersonHandler} style={style}>Toggle Persons</button>
+        <button onClick = {this.togglePersonHandler} style={styled}>Toggle Persons</button>
       </div>
     )
   }
