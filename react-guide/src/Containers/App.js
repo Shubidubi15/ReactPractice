@@ -1,6 +1,6 @@
 import React, { Component, createElement } from 'react';
 import styles from './App.css';
-import Person from './Components/Person/Person';
+import Person from '../Components/Person/Person';
 
 class App extends Component {
     state = {
@@ -48,7 +48,12 @@ class App extends Component {
           <div >
             {
               this.state.persons.map((p, index) => {
-                return <Person name={p.name} game={p.game} key={p.id} change={(event) => this.changedHandler(event, p.id)} click={() => this.deletePerson(index)}/>
+                return <Person 
+                  name={p.name} 
+                  game={p.game}
+                  key={p.id}
+                  change={(event) => this.changedHandler(event, p.id)} 
+                  click={() => this.deletePerson(index)}/>
               })
             }
           </div>
