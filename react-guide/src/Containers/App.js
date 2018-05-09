@@ -1,6 +1,7 @@
 import React, { Component, createElement } from 'react';
 import styles from './App.css';
-import Person from '../Components/Person/Person';
+import Persons from '../Components/Persons/Persons';
+import Cockpit from '../Components/Cockpit/Cockpit'
 
 class App extends Component {
     state = {
@@ -38,27 +39,21 @@ class App extends Component {
     }
 
   render() {
-    let buttonClass = '';
-    buttonClass = this.state.show ? '' : styles.Red;
     return (
       <div className={styles.App}>
-        <h1 className={'ko'}>HOI!!</h1>
+      <Cockpit 
+      show={this.state.show}
+      toggle={this.togglePersonHandler}
+      />
         { 
           this.state.show && 
           <div >
-            {
-              this.state.persons.map((p, index) => {
-                return <Person 
-                  name={p.name} 
-                  game={p.game}
-                  key={p.id}
-                  change={(event) => this.changedHandler(event, p.id)} 
-                  click={() => this.deletePerson(index)}/>
-              })
-            }
+            <Persons 
+            persons={this.state.persons}
+            click={this.deletePerson}
+            change={this.changedHandler}/>
           </div>
         }
-        <button onClick = {this.togglePersonHandler} className={buttonClass}>Toggle Persons</button>
       </div>
     )
   }
