@@ -9,7 +9,7 @@ const cockpit = (props) => {
     console.log(buttonClass);
 
     return (
-        <div>
+        <div className={styles.Cockpit}>
             <h1 className={'ko'}>HOI!!</h1>
             <button 
             onClick = {props.toggle} 
